@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Boosting Service</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white flex flex-col items-center py-10">
+    <h1 class="text-2xl font-bold mb-6">Game Boosting Service</h1>
+    
+    <div class="bg-gray-800 p-6 rounded-lg shadow-lg w-full max-w-md text-center">
+        <h2 class="text-xl font-semibold mb-4">Boost Your Game Rank</h2>
+        <input id="gameName" type="text" placeholder="Enter Game Name" class="p-2 text-black w-full rounded-md mb-4">
+        <input id="currentRank" type="text" placeholder="Current Rank" class="p-2 text-black w-full rounded-md mb-4">
+        <input id="desiredRank" type="text" placeholder="Desired Rank" class="p-2 text-black w-full rounded-md mb-4">
+        <button onclick="requestBoost()" class="bg-blue-500 px-6 py-2 text-white rounded-md hover:bg-blue-700">Request Boost</button>
+        
+        <div id="boostRequests" class="mt-6 text-left w-full"></div>
+    </div>
+
+    <script>
+        function requestBoost() {
+            const game = document.getElementById("gameName").value.trim();
+            const currentRank = document.getElementById("currentRank").value.trim();
+            const desiredRank = document.getElementById("desiredRank").value.trim();
+            
+            if (!game || !currentRank || !desiredRank) return;
+            
+            const requestList = document.getElementById("boostRequests");
+            const requestItem = document.createElement("div");
+            requestItem.classList.add("bg-green-500", "text-white", "p-4", "rounded", "mb-4");
+            requestItem.innerHTML = `<h2 class='font-bold'>${game} Boost Request</h2><p>From: ${currentRank} → To: ${desiredRank}</p>`;
+            
+            requestList.prepend(requestItem);
+            document.getElementById("gameName").value = "";
+            document.getElementById("currentRank").value = "";
+            document.getElementById("desiredRank").value = "";
+        }
+    </script>
+</body>
+</html>
